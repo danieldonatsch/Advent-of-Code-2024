@@ -1,1 +1,0 @@
-print("Hello Advent of Code 2024!")
