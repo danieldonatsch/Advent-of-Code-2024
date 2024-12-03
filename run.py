@@ -1,8 +1,10 @@
+from tabnanny import verbose
+
 import solutions
 from pydoc import locate
 
 
-def get_advent_of_code_solution(day: int, is_example):
+def get_advent_of_code_solution(day: int, is_example, verbose=False):
     """Gets the object which computes the solution on that specific day
 
     :param day: (int) 1 to 25
@@ -10,7 +12,7 @@ def get_advent_of_code_solution(day: int, is_example):
     :return: solution class
     """
     solution_class = locate(f"solutions.day_{day:02d}.SolutionDay{day:02d}")
-    return solution_class(day, is_example)
+    return solution_class(day, is_example, verbose)
 
 
 def main(day: int, is_example=False) -> None:
@@ -21,7 +23,7 @@ def main(day: int, is_example=False) -> None:
     :return: None
     """
 
-    solution = get_advent_of_code_solution(day=day, is_example=is_example)
+    solution = get_advent_of_code_solution(day=day, is_example=is_example, verbose=True)
     print(" ")
     solution.star_1()
     print(" ")
@@ -31,6 +33,6 @@ def main(day: int, is_example=False) -> None:
 if __name__ == '__main__':
     print("Hello Advent of Code 2024!")
     main(
-        day=1,
-        is_example=False
+        day=3,
+        is_example=True
     )
