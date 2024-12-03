@@ -17,8 +17,6 @@ def compute_mult(string) -> int:
 class SolutionDay03(bs.BaseSolution):
     def __init__(self, day_num: int, example=False, verbose=False):
         super().__init__(day_num, example, verbose=verbose)
-        if self.verbose:
-            print(f"{self.__class__.__name__} initialized")
 
     def _star_1(self) -> int:
         """Search for all multiplications, execute them and sum them
