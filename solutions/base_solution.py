@@ -1,13 +1,20 @@
+import os.path
 import time
 
 
 class BaseSolution:
 
-    def __init__(self, day_num: int, example=False):
+    def __init__(self, day_num: int, example=False, verbose=False):
         self.solution_day = day_num
         self.is_example = example
+        self.verbose = verbose
 
-    def get_input_file_path(self):
+    def get_input_file_path(self, star=1):
+        if star == 2 and self.is_example:
+            # Check, if there is a special example for star 2
+            if os.path.exists(f"input/day{self.solution_day:02d}_example2.txt"):
+                return f"input/day{self.solution_day:02d}_example2.txt"
+
         return f"input/day{self.solution_day:02d}_example.txt" if self.is_example \
             else f"input/day{self.solution_day:02d}.txt"
 
