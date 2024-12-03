@@ -1,7 +1,7 @@
 from . import base_solution as bs
 
 
-class SolutionDay01(bs.BaseSolution):
+class SolutionDayXX(bs.BaseSolution):
     def __init__(self, day_num: int, example=False):
         super().__init__(day_num, example)
         print(f"{self.__class__.__name__} initialized")
