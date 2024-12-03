@@ -8,6 +8,8 @@ class BaseSolution:
         self.solution_day = day_num
         self.is_example = example
         self.verbose = verbose
+        if self.verbose:
+            print(f"{self.__class__.__name__} initialized")
 
     def get_input_file_path(self, star=1):
         if star == 2 and self.is_example:
