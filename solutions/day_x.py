@@ -10,6 +10,7 @@ class SolutionDayXX(bs.BaseSolution):
 
         :return:
         """
+        input_file_path = self.get_input_file_path()
 
 
     def _star_2(self) -> None:
@@ -17,3 +18,4 @@ class SolutionDayXX(bs.BaseSolution):
 
         :return:
         """
+        input_file_path = self.get_input_file_path()
