@@ -37,9 +37,10 @@ class SolutionDay05(bs.BaseSolution):
         count_right = []
         for p in pages:
             count = 0
-            for x in pages:
-                if x in self.later_pages[p]:
-                    count += 1
+            if p in self.later_pages:
+                for x in pages:
+                    if x in self.later_pages[p]:
+                        count += 1
             count_right.append((count, p))
         # Sort according to the number of "pages to the right".
         # The page, which has the most pages right of it, is the first one.
