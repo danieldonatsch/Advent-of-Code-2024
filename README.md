@@ -33,3 +33,13 @@ We can use this and count for each list element, how many list elements need to 
 Based on this count, we can sort the lists.
 If there are "ties", we need to break them by looking up, if the "tied" elements are in the relations list.
 Swap them, if needed.
+
+## Day 6
+
+
+## Day 7
+
+Given where the numbers of an equation without the operator, except of the equal sign.
+As operators in question one can + and * be used.
+In question two additionally a concatenation operator. 
+It can be solved straight forward with a recursive (depth first, dfs) method.
