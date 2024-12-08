@@ -43,3 +43,20 @@ Given where the numbers of an equation without the operator, except of the equal
 As operators in question one can + and * be used.
 In question two additionally a concatenation operator. 
 It can be solved straight forward with a recursive (depth first, dfs) method.
+
+## Day 8
+
+Given is a grid of antennas and its frequencies.
+Two antennas which have the same frequency send together a signal along the direction their two positions define.
+
+In question one, all the points (so called anti-nodes) need to be found, 
+which have the same distance from one of the two antennas as the distance between them.
+To solve it, we first search for all antennas and build lists of them, according to their frequencies.
+So, all antennas within a least interact with each other and send signals.
+Afterward, all antennas within a list are paired.
+For each pair, the distance between them is computed and then added to each of the antennas.
+
+In question two, not only the next, but all anti-nodes need to be found.
+Again, all antennas within a list (build for question 1) ar paired.
+The distance is computed and multiple times added to the antenna positions.
+We stop computing anti-nodes, when we leave the grid.

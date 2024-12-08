@@ -14,7 +14,8 @@ sample_solutions = {
     4: (18, 9),
     5: (143, 123),
     6: (41, ),
-    7: (3749, 11387)
+    7: (3749, 11387),
+    8: (14, 34)
 }
 
 # Solution for samples.
@@ -26,7 +27,8 @@ puzzle_solutions = {
     4: (2370, 1908),
     5: (7024, 4151),
     6: (5208,),
-    7: (1611660863222, 945341732469724)
+    7: (1611660863222, 945341732469724),
+    8: (369, 1169)
 }
 
 
@@ -54,6 +56,6 @@ def run_all_tests(example=True) -> None:
 
 if __name__ == '__main__':
     t0 = time.time()
-    run_all_tests(example=True)
+    run_all_tests(example=False)
 
     print("\nRunning all Advent of Code 2024 puzzles took", round(time.time() - t0, 4), "seconds")
