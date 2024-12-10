@@ -110,3 +110,18 @@ The empty memory list is the tricky one: Remove the free space where it was foun
 Freeing up the previously used space another: We add it to the previous free space.
 Lastly, we look if we can now concatenate it also with the following free space.
 Unfortunately, this solution is quadratic O(n^2), but still fast enough to solve the puzzle in reasonable time.
+
+## Day 10
+
+Given is a map (2-d grid) where each position on the map has a value 0 to 9.
+To earn the first start, we need to count all reachable peaks (nine-values) when starting at all zero fields.
+First, we walk over the grid and look for all zeros (possible starting points).
+Going from there, we use breadth first search (BFS) to find all reachable peaks.
+Using a set to save all positions on a height level prevents us from visiting the same position multiple times.
+
+Second, we count all possible path.
+It is very similar to the peak counter.
+The only difference is, that we count the number of ways to reach it.
+So, instead of having a set with positions for a level, we use a dict.
+The dict key is the position, the value the number of path leading to it.
+
