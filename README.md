@@ -125,3 +125,16 @@ The only difference is, that we count the number of ways to reach it.
 So, instead of having a set with positions for a level, we use a dict.
 The dict key is the position, the value the number of path leading to it.
 
+## Day 11
+
+Given are a few numbers and a process, how they develop in each step.
+Some change value, some split such that we have afterward two numbers.
+Question is, how many numbers we have after x steps, starting with the few numbers given.
+First we're asked for the number of numbers after 25 steps.
+It is possible to compute this "brute-force-style".
+We can do this for example with a recursive function (DFS-style).
+For more steps (75 in question 2) a more efficient approach is needed, since the number numbers grows exponential.
+The idea is, to keep for each a map with the number that appear as keys.
+The count, how often they apper, is value stored for the key.
+Then we compute how each number develops only once and multiply it by its count.
+Further, we can cache previously computed development steps.

@@ -18,6 +18,7 @@ sample_solutions = {
     8: (14, 34),
     9: (1928, 2858),
     10: (36, 81),
+    11: (55312, 65601038650482)
 }
 
 # Solution for samples.
@@ -33,12 +34,18 @@ puzzle_solutions = {
     8: (369, 1169),
     9: (6307275788409, 6327174563252),
     10: (513, 1186),
+    11: (212655, 253582809724830)
 }
 
 
 def run_all_tests(example=True) -> None:
     target_values = sample_solutions if example else puzzle_solutions
 
+    if example:
+        print("Results with small examples")
+    else:
+        print("Real Input Results:")
+    print("Day Stars")
     for day, values in sorted(target_values.items()):
         solution = get_advent_of_code_solution(day=day, is_example=example)
         val = values[0]
@@ -55,7 +62,7 @@ def run_all_tests(example=True) -> None:
                 out += '*'
             else:
                 out += 'x'
-        print(f"{day: 2d}", out)
+        print(f"{day: 3d}", out)
 
 
 if __name__ == '__main__':
