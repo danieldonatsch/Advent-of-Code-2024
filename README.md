@@ -1,12 +1,24 @@
 # Advent of Code 2024
 
+This repository hosts my Python solutions of the Advent of Code 2024 puzzles.
+The full puzzle description and the input can be found on [https://adventofcode.com/2024](https://adventofcode.com/2024|).
+To run the code, the input files need to be placed in the `input` directory.
+The files are either named `dayXX.txt` or `dayXX_example.txt` 
+where  `XX` has to be replaced with the day as a tow-digit numbers.
+Further, the one with `_example` in the name, contains the input of the small example given in the puzzle description.
+If the second question of the day has a different example, create a `dayXX_example2.txt` file.
+Run then day by day with `run.py` 
+where in the last lines of the script the day (as integer) and whether the example or "real" input should be used.
+`test_all.py` runs, as its name says, all puzzles.
+Or at least, all which are solved until that moment.
+
 ## Day 1
 
 Pairs of numbers are given, where actually each number belongs to a list.
 Question is, what is the difference of the two lists, if we look at the (sorted) pairs.
 So, build the list and sort them.
 Then compare pair-wise and sum the result.
-
+\
 Then we compute a similarity score by figuring out, how often each element of the first list appears in the second one.
 Python's `collections.Counter()` does the counting quick and easy.
 Afterward, we can compare the two counters.
@@ -19,6 +31,7 @@ the difference between two consecutive numbers at most three.
 This is pretty straight forward:
 Use the first two elements to define if the list is supposed to be increasing or decreasing.
 The rest is comparing consecutive numbers.
+\
 In question two, we looked (additionally) for the lists where all except of one element followed the rule.
 Since the lists are short (7 entries), it is possible to try out every possibility:
 Leave out each element once and check the list.
@@ -29,6 +42,7 @@ This is exactly seven times the number of lists and so still linear O(n) in the 
 A long string with broken math is given.
 In question one, we need to look for all valid multiplications (`mul(x,y)`), where x and y are numbers.
 This can be done with a regex search.
+\
 In question two we also considered `do()` and `don't()` functions which turned on or off the following multiplications.
 Again we use regex and simple search for the next occurrence of each kind.
 We then see, which comes first and apply it, i.e. either switch on or off our calculater or process the multiplication.
@@ -39,7 +53,7 @@ First, walk over the whole grid and look for X.
 Once, one is found, we check all eight possible directions (left, right, up, down, four diagonals)
 if they contain the letters MAS and therefore make an XMAS with the initial X.
 We need to be careful with the boarders of the grid!
-
+\
 For the second task, we look for all A, except of the first and last row and column.
 Wherever we find an M, we check the two diagonals, if the Form an MAS with the initially found A.
 If both diagonals to so, we found an X-MAS and count it.
@@ -47,13 +61,13 @@ If both diagonals to so, we found an X-MAS and count it.
 ## Day 5
 
 Given is a list of relations x < y and some lists with values.
-
+\
 First we want to find out which of these lists are ordered correctly, 
 in the sense that they fulfill all pair-wise constraints.
 Todo so, I build a dict where for each element x all the elements y where stored with x < y.
 Then, all each list could be checked by comparing each list element to all the previous elements of the list.
 If one of the previous elements is supposed to ba a following one, the list is not correctly sorted.
-
+\
 Afterward, we wanted to sort the unsorted lists.
 The approach taken here works only because almost all necessary relations where given in the relations list.
 We can use this and count for each list element, how many list elements need to be to its right (aka later in the list).
@@ -63,26 +77,38 @@ Swap them, if needed.
 
 ## Day 6
 
+Given is a grid with a starting point and obstacles.
+Starting at the start point, moving straight until hitting an obstacle, then turning right, 
+we count the number of steps until we leave the grid.
+There is no magic, this task has to be performed. 
+\
+Then we try to add one obstacle, such that we never leave the grid, i.e. at some point the path becomes a loop.
+We do this, by (again) following the path.
+But now, each time we hit a new, empty grid cell, we first virtually place an obstacle.
+Then we turn right and see if this new path leads to a loop.
+Once this is figured out, the temporary obstacle is removed and the original path continued.
+To detect the loop, we mark on each visited cell all directions we've been walking on with a bit-mask.
+Then, when we return to this cell, we quickly can see, if it matches the direction of a previous visit 
+(and therefore a loop starts) or not.
 
 ## Day 7
 
-Given where the numbers of an equation without the operator, except of the equal sign.
-As operators in question one can + and * be used.
-In question two additionally a concatenation operator. 
+Given are the numbers of an equation without the operator, except of the equal sign.
+Possible operators are `+` and `*`.
+In question two additionally a concatenation operator is possible.
 It can be solved straight forward with a recursive (depth first, dfs) method.
 
 ## Day 8
 
 Given is a grid of antennas and its frequencies.
-Two antennas which have the same frequency send together a signal along the direction their two positions define.
-
+Two antennas which have the same frequency send together a signal along the direction their two positions define. \
 In question one, all the points (so called anti-nodes) need to be found, 
 which have the same distance from one of the two antennas as the distance between them.
 To solve it, we first search for all antennas and build lists of them, according to their frequencies.
 So, all antennas within a least interact with each other and send signals.
 Afterward, all antennas within a list are paired.
 For each pair, the distance between them is computed and then added to each of the antennas.
-
+\
 In question two, not only the next, but all anti-nodes need to be found.
 Again, all antennas within a list (build for question 1) ar paired.
 The distance is computed and multiple times added to the antenna positions.
@@ -99,7 +125,7 @@ One solution is to build the whole memory, including the empty spaces (O(n)).
 Then use two pointers, one from left, one from right and move them towards each other.
 The left shows the most left empty space, the right one the most right file part.
 Then, this file part can be moved to the empty space the left pointer points on.
-
+\
 In question two only whole files could be moved,
 i.e. we need to look for empty memory, which is big enough to fit the file.
 We do this by maintaining to lists.
@@ -118,7 +144,7 @@ To earn the first start, we need to count all reachable peaks (nine-values) when
 First, we walk over the grid and look for all zeros (possible starting points).
 Going from there, we use breadth first search (BFS) to find all reachable peaks.
 Using a set to save all positions on a height level prevents us from visiting the same position multiple times.
-
+\
 Second, we count all possible path.
 It is very similar to the peak counter.
 The only difference is, that we count the number of ways to reach it.
@@ -138,3 +164,5 @@ The idea is, to keep for each a map with the number that appear as keys.
 The count, how often they apper, is value stored for the key.
 Then we compute how each number develops only once and multiply it by its count.
 Further, we can cache previously computed development steps.
+
+
