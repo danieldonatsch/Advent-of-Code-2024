@@ -165,4 +165,18 @@ The count, how often they apper, is value stored for the key.
 Then we compute how each number develops only once and multiply it by its count.
 Further, we can cache previously computed development steps.
 
+## Day 12
+
+The first goal is to compute the area and perimeter of the grid cells with the same value.
+To find out, which cells are connected, we can use a recursive approach.
+It returns a list of the cell coordinates.
+The length of the list is already half of the answer: The area.
+To get the perimeter we need to figure out how many cell edges are outwards facing.
+So, we check for each grid cell, which of the neighbours are not in the list and count them.
+\
+In the second part, we count the sides.
+Grid cell edges are "merged" into one side if they are directly connected and in-line.
+We follow a similar approach as for the perimeter.
+But when looking for outwards-facing edges, we group them together and look at the end, if they are connected or not.
+
 
