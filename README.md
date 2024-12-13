@@ -179,4 +179,12 @@ Grid cell edges are "merged" into one side if they are directly connected and in
 We follow a similar approach as for the perimeter.
 But when looking for outwards-facing edges, we group them together and look at the end, if they are connected or not.
 
+## Day 13
 
+Given are 2-D locations P = (Px, Py) and two possibles moves A = (Ax, Ay), B = (Bx, By).
+All numbers are integers.
+Question is, is it possible to reach P with a combination of A and B steps.
+A (mathematical) reformulation of the problem is, do integer numbers a and b exists,
+such that a * Ax + b * By = Px and a * Ax + b * By = Py.
+This is a 2 x 2 equation system which can be solved!
+After solving it, we just have to check if a and b are integer numbers.
