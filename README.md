@@ -181,10 +181,46 @@ But when looking for outwards-facing edges, we group them together and look at t
 
 ## Day 13
 
-Given are 2-D locations P = (Px, Py) and two possibles moves A = (Ax, Ay), B = (Bx, By).
+Given are 2-D locations `P = (Px, Py)` and two possibles moves `A = (Ax, Ay)`, `B = (Bx, By)`.
 All numbers are integers.
 Question is, is it possible to reach P with a combination of A and B steps.
 A (mathematical) reformulation of the problem is, do integer numbers a and b exists,
-such that a * Ax + b * By = Px and a * Ax + b * By = Py.
+such that `a * Ax + b * By = Px` and `a * Ax + b * By = Py`.
 This is a 2 x 2 equation system which can be solved!
 After solving it, we just have to check if a and b are integer numbers.
+
+## Day 14
+
+Given is a rectangular space and a list of robots.
+Each robot has a starting position and a velocity, given in fields it moves per second.
+If a robot reaches the end of the field, it re-appears at the other end of the field.
+So, the field is kind of a sphere, where the robots can go around.
+Question is, what are the robot locations after a given time.
+Answer: Move the robot for the whole time forward and then compute the location module the grid size.
+\
+Then we got the info, that at some point the robots from a Christmas tree.
+But we don't know when.
+How to find out?
+It turned out, there is a bounding box around the Christmas tree.
+So, we let the robots and check after each step for signs of a bounding box.
+We do this by picking the two rows with the most robots in it.
+Then, we see which is the most left and most right position, which have robots located in both rows.
+This four points define the bounding box.
+We look then, how many robots are within the bounding box.
+If it is more than 70% of all the robots, we check the grid visually.
+Instead of counting the robots in the supposed bounding box, we also could try if the bounding box is a "solid" line. 
+
+## Day 15
+
+A robot moves up, down, left right if it can.
+It can move, if the field it wants to move is either free or it has a box which could be moved.
+In the first case, the boxes have a size of one field.
+So, we check for each field if it is free, is a wall or a box.
+In the case of a box, we figure out, if it can be moved by calling the same function again with the box location now.
+\
+In the second case, boxes have a size of one field high but two fields wide.
+To check, if we can move horizontally it is the same as in the previous case.
+Vertically is more tricky: We need to make sure that we move whole boxes not just the half which the robot pushes on.
+It can be solved with a recursive function, too.
+
+
