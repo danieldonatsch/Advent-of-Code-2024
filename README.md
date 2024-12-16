@@ -223,4 +223,22 @@ To check, if we can move horizontally it is the same as in the previous case.
 Vertically is more tricky: We need to make sure that we move whole boxes not just the half which the robot pushes on.
 It can be solved with a recursive function, too.
 
+# Day 16
+
+Given is a grid on which we can move.
+Except, there is a piece of a wall.
+Moving to the next cell costs 1, turning 1000.
+What's the cheapest way from bottom left to top right?
+We find it with a breadth first search method.
+But be careful: The direction we enter a grid cell measures.
+So, we need to keep for each cell four prices: One for each direction.
+\
+Once the price is fixed, we'd like to know the paths.
+This we can do with a depth first search, based on the information collected previously.
+There we saved the cheapest possible cost for every reachable cell in each of the four directions.
+So, we move from the start in every possible direction, check on each cell which we touch,
+if the saved price is the same as the expected from the previous path.
+If not, this can't be an optimal path.
+Further, if we reach at any point a price higher than the smallest total price, we can stop as well.
+Again, we need to keep track of every visited grid cell and direction.
 
