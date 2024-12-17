@@ -242,3 +242,9 @@ If not, this can't be an optimal path.
 Further, if we reach at any point a price higher than the smallest total price, we can stop as well.
 Again, we need to keep track of every visited grid cell and direction.
 
+## Day 17
+
+To earn the first start, reading and working precisely was everything needed.
+\
+Second exercise not yet done.
+
