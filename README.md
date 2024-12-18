@@ -248,3 +248,11 @@ To earn the first start, reading and working precisely was everything needed.
 \
 Second exercise not yet done.
 
+## Day 18
+
+Build the grid with the given number of obstacles.
+Find the length of the shortest possible path with a BFS.
+\
+The second star can be earned by solving the first question with increasing number of obstacles.
+Stop, when no path can be found.
+
