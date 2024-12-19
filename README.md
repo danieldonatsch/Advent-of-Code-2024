@@ -256,3 +256,20 @@ Find the length of the shortest possible path with a BFS.
 The second star can be earned by solving the first question with increasing number of obstacles.
 Stop, when no path can be found.
 
+## Day 19
+
+Given is a set of (shorter) words and a list of long strings.
+The question is, which of the strings can be built through concatenations of the given words.
+Each word can be uses as often as needed.
+To solve it, we keep a list `reachable`, which has the same length as the input string and stores booleans.
+Then, we compute for each reachable position all (forward) positions, which we can reach with the given set of words.
+That way, we go through the whole string/list from left to right.
+At the end, we just have to check if the last entry of `reachable` is `True`.
+\\
+In the second part, we also want to count the number of ways we have, to build the string.
+We do it almost the same way as finding any way.
+The only difference is, that we replace the `reachable` list with a `ways` list.
+This list holds integers instead of booleans and counts for each position the ways we can reach it.
+\\
+To make searching more efficient, we first build a [trie](https://en.wikipedia.org/wiki/Trie) with the given words.
+
