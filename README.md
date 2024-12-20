@@ -273,3 +273,23 @@ This list holds integers instead of booleans and counts for each position the wa
 \\
 To make searching more efficient, we first build a [trie](https://en.wikipedia.org/wiki/Trie) with the given words.
 
+## Day 20
+
+Given is a map which shows a racetrack and walls defining the racetrack.
+First we compute, how long the racetrack is.
+We follow the racetrack and write to each cell the number of steps done until here.
+Then we are allowed to cheat once by going through a wall once.
+To earn the first star, we need to count the possibilities to take such a shortcut and save at least 100 steps.
+We do this by testing each grid cell if it is a wall piece or not.
+If it is, we compare its horizontal and vertical neighbours.
+If both belong to the original track, the difference between the two numbers minus two 
+(we need to do two steps to go through the wall) is the saving.
+Rest is just counting.
+\\
+Then we are allowed to cheat more. We can do once uo to 20 "free" steps, independently if we cross walls or not.
+Again, we want to figure out how many ways we have to save at least 100 steps.
+In this case, we follow the original track.
+On each track field, we compute all possible location with that cheat.
+We compute the win of the cheat by subtracting the current location from the one after the cheat 
+and then adding the "cheating steps".
+Then, again, we just count.
