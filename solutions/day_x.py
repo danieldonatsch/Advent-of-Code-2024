@@ -6,14 +6,14 @@ class SolutionDayXX(bs.BaseSolution):
         super().__init__(day_num, example, verbose=verbose)
 
     def _star_1(self) -> int:
-        """Fill in description and code...
+        """Solve puzzle 1
 
         :return:
         """
         input_file_path = self.get_input_file_path()
 
     def _star_2(self) -> int:
-        """Fill in description and code...
+        """Solve puzzle 2
 
         :return:
         """

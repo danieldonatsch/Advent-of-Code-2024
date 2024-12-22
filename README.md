@@ -293,3 +293,22 @@ On each track field, we compute all possible location with that cheat.
 We compute the win of the cheat by subtracting the current location from the one after the cheat 
 and then adding the "cheating steps".
 Then, again, we just count.
+
+## Day 21
+
+
+## Day 22
+
+We are given some functionalities to compute pseudo-random numbers.
+To earn the first star, simply implement these functionalities,
+then compute the 2000th pseudo random number with the given seeds.
+\\
+The second star can be earned by an extension of it.
+When computing the pseudo random numbers, keep track of the last digit.
+The four last differences, so last digit of pseudo random number i-3 minus last digit of pseudo random number i-4, 
+and so on until last digit of current minus last digit of previous random number, give a four digit sequence.
+We keep track of them (using a hash map a.k.a dict with the four digits as the key) and the price 
+(last digit of the corresponding pseudo random number) as its value.
+So, we know for each pseudo random series, when the four-digit-sequence appears first and what price it is worth.
+Summing up the corresponding dict values for all the sequences tells us the price we get for each four-digit-sequence.
+So, we simply need to look for the max value in the dict.
