@@ -312,3 +312,22 @@ We keep track of them (using a hash map a.k.a dict with the four digits as the k
 So, we know for each pseudo random series, when the four-digit-sequence appears first and what price it is worth.
 Summing up the corresponding dict values for all the sequences tells us the price we get for each four-digit-sequence.
 So, we simply need to look for the max value in the dict.
+
+## Day 23
+
+Given is a non-directed graph.
+To earn the first start, we look for three-vertex-cycles or also three-cliques.
+We solve it by looking at each vertex and then checking if the neighbours of the neighbours have an edge to the vertex.
+It is not very efficient, because we find each clique six times. But it still works! 
+We then need to filter out these, which have a vertex which starts with `t`.
+\\
+Second star we earn by finding the largest clique overall.
+This is a hard problem and several algorithms which approach it, do exist.
+In the end, we use here a greedy approach:
+Starting with the three-cliques from part one, 
+we look at all neighbour vertices of the (alphabetically) first node of the clique.
+Checking if this vertex has an edge to all existing clique members.
+If so, we extend the clique by this node and put it into a new set which contains now four-vertex-cliques.
+Once all three-vertex-cliques are processed, we do the same with the four-vertex-cliques.
+We repeat this, until the set has only one clique left.
+This is the largest possible clique and the solution to today's puzzle.
