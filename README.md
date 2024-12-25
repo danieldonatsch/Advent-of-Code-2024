@@ -331,3 +331,61 @@ If so, we extend the clique by this node and put it into a new set which contain
 Once all three-vertex-cliques are processed, we do the same with the four-vertex-cliques.
 We repeat this, until the set has only one clique left.
 This is the largest possible clique and the solution to today's puzzle.
+
+## Day 24
+
+We get the first gold star by simply processing all instructions.
+Since they might not be given in correct order, we put all the processing instructions into a double-ended que.
+Then, we pop the front one, see of both input value exists and process it.
+If an input value is missing, we simply push it back to the que.
+We stop, when the que is empty.
+Then we can read the output, and convert it from bit-code to an integer.
+\\
+In puzzle two we wanted to compute the sum of the input numbers x and y.
+A bit-wise computation works as follows: sum the bit of x, y and a. 
+If the sum is two or larger, push a one to the next a.
+See this example:
+
+            5	4	3	2	1	0
+        x:	1	0	0	1	1	1
+        y:	0	0	1	1	1	0
+        - - - - - - - - - - - - -
+        a:	0	1	1	1	0	-
+        -------------------------
+        z:	1	1	0	1	0	1
+
+First, we compute z0, which is easy:
+
+		    z0 = x0 xor y0
+
+It's "overflow" is:
+
+    a1 = x0 and y0
+
+Then,
+
+    z1 = (x1 xor y1) xor a1
+
+its overflow is
+
+    a2 = (x1 and y1) or (x1 and a1) or (y1 and a1)
+       = (x1 and y1) or ((x1 xor y1) and a1)
+
+we then re-name two more variables:
+
+    t1 = (x1 xor y1)
+    xy1 = (x1 and y1)
+
+So, the formula above becomes
+
+    a2 = xy1 or (t1 and a1)
+
+Or in general, we can compute:
+
+    t_i = x_i xor y_1
+    xy_i = x_i AND y_i
+    a_i = xy_i-1 OR (t_i-1 AND a_i-1)
+    z_i = t_i XOR a_i
+
+We try to print this for every variable z_i, and find the bug...
+
