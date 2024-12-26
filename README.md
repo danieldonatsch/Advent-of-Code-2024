@@ -246,7 +246,13 @@ Again, we need to keep track of every visited grid cell and direction.
 
 To earn the first start, reading and working precisely was everything needed.
 \
-Second exercise not yet done.
+No clue, how this was figured out.
+But it seemed, that the value in register A became three binary values shorter each time the computer outputs a value.
+With this information, it is possible to find register A values, which lead to the requested output by a backward-search.
+So, we try all eight three-bit combinations to figure out, which of them produces the last requested output.
+We keep this possible last three bits and add three more bits in front and try again, 
+which of them leads to the second last output.
+If we find more than one possible register A values, we pick the minimum.
 
 ## Day 18
 

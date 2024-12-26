@@ -46,7 +46,6 @@ class ChronospatialComputer:
         :param operand:
         :return:
         """
-        #print(f"adv({operand}), {self.registers = }")
         self.registers['A'] = self._dv(operand)
         self.instruction_pointer += 2
 
@@ -57,7 +56,6 @@ class ChronospatialComputer:
         :param operand:
         :return:
         """
-        #print(f"bxl({operand}), {self.registers = }")
         self.registers['B'] = self.registers['B'] ^ operand
         self.instruction_pointer += 2
 
@@ -68,7 +66,6 @@ class ChronospatialComputer:
         :param operand:
         :return:
         """
-        #print(f"bst({operand}), {self.registers = }")
         self.registers['B'] = self.combo(operand) % 8
         self.instruction_pointer += 2
 
@@ -80,7 +77,6 @@ class ChronospatialComputer:
         :param operand:
         :return:
         """
-        #print(f"jnz({operand}), {self.registers = }")
         if self.registers['A'] == 0 or self.instruction_pointer == operand:
             self.instruction_pointer += 2
         else:
@@ -93,7 +89,6 @@ class ChronospatialComputer:
         :param operand:
         :return:
         """
-        #print(f"bxc({operand}), {self.registers = }")
         self.registers['B'] = self.registers['B'] ^ self.registers['C']
         self.instruction_pointer += 2
 
@@ -101,8 +96,10 @@ class ChronospatialComputer:
         """The out instruction (opcode 5) calculates the value of its combo operand modulo 8, then outputs that value.
         (If a program outputs multiple values, they are separated by commas.)
         """
-        #print(f"out({operand}), {self.registers = }")
         self.computed_values.append(str(self.combo(operand) % 8))
+        #print(self.registers)
+        #print('A:', bin(self.registers['A']))
+        #print("Output:", self.computed_values[-1])
         self.instruction_pointer += 2
 
     def bdv(self, operand: int) -> None:
@@ -111,7 +108,6 @@ class ChronospatialComputer:
 
         :return:
         """
-        #print(f"bdv({operand}), {self.registers = }")
         self.registers['B'] = self._dv(operand)
         self.instruction_pointer += 2
 
@@ -119,7 +115,6 @@ class ChronospatialComputer:
         """The cdv instruction (opcode 7) works exactly like the adv instruction
         except that the result is stored in the C register. (The numerator is still read from the A register.)
         """
-        #print(f"cdv({operand}), {self.registers = }")
         self.registers['C'] = self._dv(operand)
         self.instruction_pointer += 2
 
@@ -150,8 +145,8 @@ class SolutionDay17(bs.BaseSolution):
         self.registers = {'A': None, 'B': None, 'C': None}
         self.instructions = []
 
-    def read_input(self):
-        input_file_path = self.get_input_file_path()
+    def read_input(self, star=1):
+        input_file_path = self.get_input_file_path(star=star)
         with open(input_file_path, 'r') as of:
             self.registers['A'] = int(of.readline().split(':')[1].strip())
             self.registers['B'] = int(of.readline().split(':')[1].strip())
@@ -175,7 +170,51 @@ class SolutionDay17(bs.BaseSolution):
 
         :return:
         """
-        input_file_path = self.get_input_file_path()
+        self.read_input(star=2)
+
+        # Each output shortens the register A value by its last three bits.
+        # No clue why, but it is the case!
+        # So, we search from the back and keep track of all possible register A values
+        register_a = [0]
+        target = ''
+        for i in range(len(self.instructions)-1, -1, -1):
+            # Build the target string, i.e. the output of the i, i+1, ... n values from the instructions.
+            if target:
+                target = ',' + target
+            target = str(self.instructions[i]) + target
+            # Keep a list for all possible (new) register a values...
+            solutions = []
+            # Try each register A value which lead to a solution for i+1,...n
+            for reg_a in register_a:
+                # Try all eight combinations for the new last three bits
+                for last_3_bits in range(8):
+                    a = reg_a * 8 + last_3_bits
+                    computer = ChronospatialComputer(
+                        a=a,
+                        b=self.registers['B'],
+                        c=self.registers['C'],
+                        instructions=self.instructions
+                    )
+                    computer_output = computer.run()
+                    # If the current a leads to the correct result, add it on the solutions list
+                    if computer_output == target:
+                        solutions.append(a)
+            # Make all solutions to the new register A inputs...
+            register_a = solutions
+
+        '''
+        # Really!? I couldn't believe it, so I double-checked it!
+        computer = ChronospatialComputer(
+            a=min(register_a),
+            b=self.registers['B'],
+            c=self.registers['C'],
+            instructions=self.instructions
+        )
+        print(computer.run())
+        '''
+        # Pick the smallest value
+        return min(register_a)
 
 # ZKB-Ranking
 # Star 1, rank 16
+# Star 2, rant 20
