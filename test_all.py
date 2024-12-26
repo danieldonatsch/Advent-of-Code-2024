@@ -1,9 +1,7 @@
 import time
 
-import solutions
 from run import get_advent_of_code_solution
 
-from pydoc import locate
 
 # Solution for samples.
 # Dict key is the day, first solution for star 1, second for star 2
@@ -31,6 +29,7 @@ sample_solutions = {
     22: (37327623, 24),
     23: (7, 'co,de,ka,ta'),
     24: (2024, 'cdj,dhm,gfm,mrb,qjd,z08,z16,z32'),
+    25: (3, )
 }
 
 # Solution for samples.
@@ -59,6 +58,7 @@ puzzle_solutions = {
     22: (12759339434, 1405),
     23: (1423, 'gt,ha,ir,jn,jq,kb,lr,lt,nl,oj,pp,qh,vy'),
     24: (55114892239566, 'cdj,dhm,gfm,mrb,qjd,z08,z16,z32'),
+    25: (3508, )
 }
 
 

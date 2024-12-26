@@ -389,3 +389,7 @@ Or in general, we can compute:
 
 We try to print this for every variable z_i, and find the bug...
 
+## Day 25
+
+Keys and locks are given.
+As the description already says: Try each key with each lock and count the pairs that (may) fit.
