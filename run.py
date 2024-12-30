@@ -31,6 +31,6 @@ def main(day: int, is_example=False) -> None:
 if __name__ == '__main__':
     print("Hello Advent of Code 2024!")
     main(
-        day=3,
+        day=25,
         is_example=True
     )

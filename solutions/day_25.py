@@ -31,8 +31,6 @@ class SolutionDay25(bs.BaseSolution):
                 of.readline()
                 count += 1
 
-        print("Found", count, "objects")
-
     def _star_1(self) -> int:
         """Solve puzzle 1
 

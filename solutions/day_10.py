@@ -69,7 +69,6 @@ class SolutionDay10(bs.BaseSolution):
 
         return self.find_all_paths(next_level, h)
 
-
     def _star_1(self) -> None:
         """Fill in description and code...
 

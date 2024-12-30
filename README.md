@@ -103,9 +103,9 @@ It can be solved straight forward with a recursive (depth first, dfs) method.
 Given is a grid of antennas and its frequencies.
 Two antennas which have the same frequency send together a signal along the direction their two positions define. \
 In question one, all the points (so called anti-nodes) need to be found, 
-which have the same distance from one of the two antennas as the distance between them.
-To solve it, we first search for all antennas and build lists of them, according to their frequencies.
-So, all antennas within a least interact with each other and send signals.
+which have the same distance from one of the two antennas as the distance between the antennas.
+To solve it, we first search for all antennas and build lists of them according to their frequencies.
+So, all antennas which interact with each other and send signals are in one list.
 Afterward, all antennas within a list are paired.
 For each pair, the distance between them is computed and then added to each of the antennas.
 \
@@ -223,7 +223,7 @@ To check, if we can move horizontally it is the same as in the previous case.
 Vertically is more tricky: We need to make sure that we move whole boxes not just the half which the robot pushes on.
 It can be solved with a recursive function, too.
 
-# Day 16
+## Day 16
 
 Given is a grid on which we can move.
 Except, there is a piece of a wall.
@@ -302,6 +302,19 @@ Then, again, we just count.
 
 ## Day 21
 
+The basic idea is to steer a robot with the buttons up, down, left, right and enter.
+The robot needs to enter a code on a num pad.
+Then the question is, which is the shortest path, meaning the one which needs the least number of button presses.
+But this is too easy for an advent of code puzzle.
+To earn the first start, we need to steer a robot which steers a robot, that steers the robot which enters the code.
+FOr the second star, there are more robots stacked or joined.
+We solve it with lots of manual base-work: Producing dicts with all possible paths for every possible button location.
+Then we write a function which follows these paths and computes the shortest path length.
+This we can do iterative and get each time a table for every button combination.
+First we know the number of button presses for e.g. a "down" button, if another robot has to steer it.
+Then, we compute this table for another "layer of robots", and so on.
+We keep the values for two and 25 robots, and use them to compute the path length, resp. number of buttons to press,
+for the path on the num pat.
 
 ## Day 22
 
@@ -313,7 +326,7 @@ The second star can be earned by an extension of it.
 When computing the pseudo random numbers, keep track of the last digit.
 The four last differences, so last digit of pseudo random number i-3 minus last digit of pseudo random number i-4, 
 and so on until last digit of current minus last digit of previous random number, give a four digit sequence.
-We keep track of them (using a hash map a.k.a dict with the four digits as the key) and the price 
+We keep track of them (using a hash map a.k.a. dict with the four digits as the key) and the price 
 (last digit of the corresponding pseudo random number) as its value.
 So, we know for each pseudo random series, when the four-digit-sequence appears first and what price it is worth.
 Summing up the corresponding dict values for all the sequences tells us the price we get for each four-digit-sequence.
@@ -348,8 +361,9 @@ We stop, when the que is empty.
 Then we can read the output, and convert it from bit-code to an integer.
 \\
 In puzzle two we wanted to compute the sum of the input numbers x and y.
-A bit-wise computation works as follows: sum the bit of x, y and a. 
-If the sum is two or larger, push a one to the next a.
+A bit-wise computation works as follows: sum bit values of x, y and a. 
+If the sum is two or larger, push a one to the next a-bit.
+Go from right to left and do this for each bit.
 See this example:
 
             5	4	3	2	1	0
@@ -399,3 +413,6 @@ We try to print this for every variable z_i, and find the bug...
 
 Keys and locks are given.
 As the description already says: Try each key with each lock and count the pairs that (may) fit.
+\\
+The last start is not earned by solving a puzzle. It's a gift for those, who solved all 49 puzzles.
+Thanks! :-)
