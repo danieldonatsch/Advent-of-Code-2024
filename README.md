@@ -271,12 +271,12 @@ To solve it, we keep a list `reachable`, which has the same length as the input 
 Then, we compute for each reachable position all (forward) positions, which we can reach with the given set of words.
 That way, we go through the whole string/list from left to right.
 At the end, we just have to check if the last entry of `reachable` is `True`.
-\\
+\
 In the second part, we also want to count the number of ways we have, to build the string.
 We do it almost the same way as finding any way.
 The only difference is, that we replace the `reachable` list with a `ways` list.
 This list holds integers instead of booleans and counts for each position the ways we can reach it.
-\\
+\
 To make searching more efficient, we first build a [trie](https://en.wikipedia.org/wiki/Trie) with the given words.
 
 ## Day 20
@@ -291,7 +291,7 @@ If it is, we compare its horizontal and vertical neighbours.
 If both belong to the original track, the difference between the two numbers minus two 
 (we need to do two steps to go through the wall) is the saving.
 Rest is just counting.
-\\
+\
 Then we are allowed to cheat more. We can do once uo to 20 "free" steps, independently if we cross walls or not.
 Again, we want to figure out how many ways we have to save at least 100 steps.
 In this case, we follow the original track.
@@ -321,7 +321,7 @@ for the path on the num pat.
 We are given some functionalities to compute pseudo-random numbers.
 To earn the first star, simply implement these functionalities,
 then compute the 2000th pseudo random number with the given seeds.
-\\
+\
 The second star can be earned by an extension of it.
 When computing the pseudo random numbers, keep track of the last digit.
 The four last differences, so last digit of pseudo random number i-3 minus last digit of pseudo random number i-4, 
@@ -339,7 +339,7 @@ To earn the first start, we look for three-vertex-cycles or also three-cliques.
 We solve it by looking at each vertex and then checking if the neighbours of the neighbours have an edge to the vertex.
 It is not very efficient, because we find each clique six times. But it still works! 
 We then need to filter out these, which have a vertex which starts with `t`.
-\\
+\
 Second star we earn by finding the largest clique overall.
 This is a hard problem and several algorithms which approach it, do exist.
 In the end, we use here a greedy approach:
@@ -359,7 +359,7 @@ Then, we pop the front one, see of both input value exists and process it.
 If an input value is missing, we simply push it back to the que.
 We stop, when the que is empty.
 Then we can read the output, and convert it from bit-code to an integer.
-\\
+\
 In puzzle two we wanted to compute the sum of the input numbers x and y.
 A bit-wise computation works as follows: sum bit values of x, y and a. 
 If the sum is two or larger, push a one to the next a-bit.
@@ -376,7 +376,7 @@ See this example:
 
 First, we compute z0, which is easy:
 
-		    z0 = x0 xor y0
+    z0 = x0 xor y0
 
 It's "overflow" is:
 
@@ -413,6 +413,6 @@ We try to print this for every variable z_i, and find the bug...
 
 Keys and locks are given.
 As the description already says: Try each key with each lock and count the pairs that (may) fit.
-\\
+\
 The last start is not earned by solving a puzzle. It's a gift for those, who solved all 49 puzzles.
 Thanks! :-)
