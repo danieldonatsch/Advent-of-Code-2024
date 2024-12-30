@@ -366,13 +366,13 @@ If the sum is two or larger, push a one to the next a-bit.
 Go from right to left and do this for each bit.
 See this example:
 
-            5	4	3	2	1	0
-        x:	1	0	0	1	1	1
-        y:	0	0	1	1	1	0
-        - - - - - - - - - - - - -
-        a:	0	1	1	1	0	-
-        -------------------------
-        z:	1	1	0	1	0	1
+        5   4   3   2   1   0
+    x:  1   0   0   1   1   1
+    y:  0   0   1   1   1   0
+    - - - - - - - - - - - - -
+    a:  0   1   1   1   0   -
+    -------------------------
+    z:  1   1   0   1   0   1
 
 First, we compute z0, which is easy:
 
